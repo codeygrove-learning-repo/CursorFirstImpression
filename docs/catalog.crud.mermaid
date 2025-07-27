@@ -1,0 +1,22 @@
+graph TD
+    A[Web Portal] --> B{Catalog Item Management};
+
+    B --> C{Add Catalog Item};
+    C -- "Input Details" --> D[Database];
+    D -- "Save" --> E[Confirmation/Success];
+
+    B --> F{Edit Catalog Item};
+    F -- "Select Item" --> G[Display Item Details];
+    G -- "Modify Details" --> D;
+
+    B --> H{View Catalog Item};
+    H -- "Search/Browse" --> I[Retrieve from Database];
+    I -- J[Display Catalog Item(s)];
+
+    B --> K{Delete Catalog Item};
+    K -- "Select Item" --> L[Confirmation Prompt];
+    L -- "Confirm Delete" --> D;
+    D -- "Remove" --> E;
+
+    E --> A;
+    J --> A;

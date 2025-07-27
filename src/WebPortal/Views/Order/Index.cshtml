@@ -1,0 +1,38 @@
+@model IEnumerable<AspireLearning.WebPortal.Models.OrderViewModel>
+@{
+    ViewData["Title"] = "Orders";
+}
+<h2>Orders</h2>
+<p>
+    <a class="btn btn-primary" asp-action="Create">Add New Order (with 2 random catalogs)</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Order Date</th>
+            <th>Delivered</th>
+            <th>Order Items</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var order in Model)
+    {
+        <tr>
+            <td>@order.OrderDate</td>
+            <td>@order.Delivered</td>
+            <td>
+                <ul>
+                @foreach (var item in order.OrderItems ?? new List<AspireLearning.WebPortal.Models.OrderItemViewModel>())
+                {
+                    <li>@item.CatalogItemId (Ordered: @item.OrderedQuantity, Supplied: @item.SuppliedQuantity)</li>
+                }
+                </ul>
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@order.Id">Details</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table> 

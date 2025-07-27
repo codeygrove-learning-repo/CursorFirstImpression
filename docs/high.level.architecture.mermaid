@@ -1,0 +1,28 @@
+graph TD
+    subgraph Presentation Layer
+        User[Customer/Driver] --> Web[Web Portal]
+        User --> Mobile[Mobile App]
+    end
+
+    subgraph Application Layer
+        Web --> CatalogAPI(Catalog API)
+        Web --> OrderAPI(Order API)
+        Mobile --> OrderAPI
+
+        OrderAPI --> OrderBus(Order Service Bus)
+        OrderBus --> OrderProcessor(Order Processor)
+        OrderProcessor --> DeliveryEventHub(Delivery EventHub)
+    end
+
+    subgraph Data Layer
+        CatalogAPI --> MongoDB(MongoDB)
+        OrderAPI --> MongoDB
+        OrderProcessor --> MongoDB
+    end
+
+    subgraph Integration & Background Processing
+        DeliveryEventHub --> Invoice(Invoice Service)
+        DeliveryEventHub --> VendorResupply(Vendor Resupply Service)
+        DeliveryEventHub --> Replenishment(Replenishment Service)
+        DeliveryEventHub --> Mobile
+    end

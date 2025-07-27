@@ -1,0 +1,33 @@
+@model AspireLearning.WebPortal.Models.CatalogItemViewModel
+@{
+    ViewData["Title"] = "Create Catalog Item";
+}
+<h2>Create Catalog Item</h2>
+<form asp-action="Create">
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Description"></label>
+        <input asp-for="Description" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="CatalogType"></label>
+        <input asp-for="CatalogType" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Price"></label>
+        <input asp-for="Price" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="AvailableStock"></label>
+        <input asp-for="AvailableStock" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="AvailableForSell"></label>
+        <input asp-for="AvailableForSell" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Create</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form> 

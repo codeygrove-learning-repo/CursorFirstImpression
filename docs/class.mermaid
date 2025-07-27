@@ -1,0 +1,26 @@
+classDiagram
+    class Order {
+        +string Id
+        +DateTime OrderDate
+        +bool Delivered
+        +List~OrderItem~ OrderItems
+    }
+
+    class OrderItem {
+        +string CatalogItemId
+        +int OrderedQuantity
+        +int SuppliedQuantity
+    }
+
+    class CatalogItem {
+        +string Id
+        +string Name
+        +string Description
+        +string CatalogType
+        +decimal Price
+        +int AvailableStock
+        +int AvailableForSell
+    }
+
+    Order "1" -- "*" OrderItem : contains
+    OrderItem "1" -- "1" CatalogItem : refers to

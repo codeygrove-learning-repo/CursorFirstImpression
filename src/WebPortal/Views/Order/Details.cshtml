@@ -1,0 +1,21 @@
+@model AspireLearning.WebPortal.Models.OrderViewModel
+@{
+    ViewData["Title"] = "Order Details";
+}
+<h2>Order Details</h2>
+<dl class="row">
+    <dt class="col-sm-2">Order ID</dt>
+    <dd class="col-sm-10">@Model.Id</dd>
+    <dt class="col-sm-2">Order Date</dt>
+    <dd class="col-sm-10">@Model.OrderDate</dd>
+    <dt class="col-sm-2">Delivered</dt>
+    <dd class="col-sm-10">@Model.Delivered</dd>
+</dl>
+<h4>Order Items</h4>
+<ul>
+@foreach (var item in Model.OrderItems ?? new List<AspireLearning.WebPortal.Models.OrderItemViewModel>())
+{
+    <li>@item.CatalogItemId (Ordered: @item.OrderedQuantity, Supplied: @item.SuppliedQuantity)</li>
+}
+</ul>
+<a asp-action="Index" class="btn btn-secondary">Back to Orders</a> 

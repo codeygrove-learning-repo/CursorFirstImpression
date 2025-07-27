@@ -1,0 +1,16 @@
+graph TD
+    subgraph Order Management
+        A[Web Portal] -- View/Edit Orders --> B(Order API)
+        B -- Query/Update Order Data --> C{MongoDB}
+        C -- Order Data --> B
+        B -- Display Orders --> A
+        A -- Add New Order (with random catalogs) --> D(Order API)
+        D -- Create Order Data --> C
+        C -- Store Order --> D
+    end
+
+    subgraph Order Placement
+        D -- Publish New Order --> E(Order Service Bus)
+        E -- New Order Message --> F[Order Processor]
+        F -- "Order Received (ID: <order_id>)" --> G(Console/Logs)
+    end

@@ -1,0 +1,10 @@
+// Example Document in 'catalogitems' collection
+{
+    "_id": "catalogABC", // Maps to CatalogItem.Id (BsonId)
+    "name": "Laptop Pro 15", // Maps to CatalogItem.Name
+    "description": "High-performance laptop for professionals.", // Maps to CatalogItem.Description
+    "catalogType": "Electronics", // Maps to CatalogItem.CatalogType
+    "price": 1899.99, // Maps to CatalogItem.Price (using Decimal128 in MongoDB for precision)
+    "availableStock": 50, // Maps to CatalogItem.AvailableStock
+    "availableForSell": 45 // Maps to CatalogItem.AvailableForSell
+  }

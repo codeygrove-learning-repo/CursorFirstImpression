@@ -1,0 +1,14 @@
+graph TD
+    subgraph Driver Delivery Confirmation
+        H[Mobile with React App] -- Mark Order as Delivered --> I(Order API)
+        I -- Update 'Delivered' flag --> J{MongoDB}
+        J -- Confirm Update --> I
+        I -- Publish Order Delivered Event --> K(Order Service Bus)
+    end
+
+    subgraph Order Delivered Processing
+        K -- Order Delivered Event --> L[Order Processor]
+        L -- "Order delivered (ID: <order_id>)" --> M(Console/Logs)
+        L -- Set Delivered Flag to True --> J
+        L -- Publish Order Delivered Event --> N(Delivery EventHub)
+    end

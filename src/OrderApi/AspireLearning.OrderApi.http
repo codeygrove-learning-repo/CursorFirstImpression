@@ -1,0 +1,6 @@
+@AspireLearning.OrderApi_HostAddress = http://localhost:5287
+
+GET {{AspireLearning.OrderApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

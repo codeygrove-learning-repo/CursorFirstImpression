@@ -1,0 +1,11 @@
+graph TD
+    subgraph Event Hub Consumption (Fan-out)
+        O(Delivery EventHub) --> P[Invoice Consumer]
+        P -- "Invoice Consumer: Processing delivered order (ID: <order_id>)" --> Q(Console/Logs)
+
+        O --> R[Vendor Resupply Consumer]
+        R -- "Vendor Resupply Consumer: Processing delivered order (ID: <order_id>)" --> Q
+
+        O --> S[Replenishment Consumer]
+        S -- "Replenishment Consumer: Processing delivered order (ID: <order_id>)" --> Q
+    end

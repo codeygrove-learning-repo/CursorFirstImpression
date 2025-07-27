@@ -416,3 +416,25 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
+
+# Vite + React (frontend) common ignores
+node_modules/
+dist/
+dist-ssr/
+.vite/
+.vite-cache/
+.vitepress/cache/
+*.local
+*.tsbuildinfo
+.env
+.env.*
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+*.bak
+*.tmp
+*.temp

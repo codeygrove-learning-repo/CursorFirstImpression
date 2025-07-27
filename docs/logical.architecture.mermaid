@@ -1,0 +1,36 @@
+flowchart LR
+ subgraph subGraph0["User Interfaces"]
+        A["Web Portal"]
+        B["Mobile App"]
+  end
+ subgraph subGraph1["Core Services"]
+        C["Catalog Service"]
+        D["Order Service"]
+        E["Order Processing Service"]
+  end
+ subgraph subGraph2["Data Stores"]
+        F["Order & Catalog Data Store"]
+  end
+ subgraph subGraph3["Messaging & Events"]
+        G["Order Message Queue"]
+        H["Delivery Event Stream"]
+  end
+ subgraph subGraph4["Downstream Processes"]
+        I["Invoice Generation Service"]
+        J["Vendor Resupply Service"]
+        K["Inventory Replenishment Service"]
+  end
+    A -- Manages Catalogs --> C
+    A -- Manages Orders --> D
+    B -- Views Orders & Updates Delivery --> D
+    C -- Reads/Writes Catalog Data --> F
+    D -- Reads/Writes Order Data --> F
+    D -- Places New Order --> G
+    D -- Flags Order Delivered --> G
+    G -- Processes Orders --> E
+    
+    E -- Publishes Delivery Events --> H
+    
+    H -- Triggers Invoice Generation --> I
+    H -- Triggers Vendor Resupply --> J
+    H -- Triggers Inventory Replenishment --> K

@@ -1,0 +1,18 @@
+// Example Document in 'orders' collection
+{
+    "_id": "order12345", // Maps to Order.Id (BsonId)
+    "orderDate": ISODate("2025-07-16T10:00:00Z"), // Maps to Order.OrderDate
+    "delivered": false, // Maps to Order.Delivered
+    "orderItems": [ // Maps to Order.OrderItems (embedded array of OrderItem documents)
+      {
+        "catalogItemId": "catalogABC", // Maps to OrderItem.CatalogItemId (reference to 'catalogitems' collection)
+        "orderedQuantity": 2, // Maps to OrderItem.OrderedQuantity
+        "suppliedQuantity": 1 // Maps to OrderItem.SuppliedQuantity
+      },
+      {
+        "catalogItemId": "catalogXYZ",
+        "orderedQuantity": 1,
+        "suppliedQuantity": 0
+      }
+    ]
+  }
