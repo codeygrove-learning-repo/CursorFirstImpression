@@ -17,12 +17,10 @@ graph TD
     subgraph Data Layer
         CatalogAPI --> MongoDB(MongoDB)
         OrderAPI --> MongoDB
-        OrderProcessor --> MongoDB
     end
 
     subgraph Integration & Background Processing
         DeliveryEventHub --> Invoice(Invoice Service)
         DeliveryEventHub --> VendorResupply(Vendor Resupply Service)
-        DeliveryEventHub --> Replenishment(Replenishment Service)
-        DeliveryEventHub --> Mobile
+        DeliveryEventHub --> Replenishment(Replenishment Service)        
     end

@@ -1,14 +1,23 @@
 graph TD
     subgraph Driver Delivery Confirmation
         H[Mobile with React App] -- Mark Order as Delivered --> I(Order API)
-        I -- Update 'Delivered' flag --> J{MongoDB}
-        J -- Confirm Update --> I
+        I -- Update 'Delivered' flag --> J{MongoDB}        
         I -- Publish Order Delivered Event --> K(Order Service Bus)
     end
 
     subgraph Order Delivered Processing
         K -- Order Delivered Event --> L[Order Processor]
-        L -- "Order delivered (ID: <order_id>)" --> M(Console/Logs)
-        L -- Set Delivered Flag to True --> J
-        L -- Publish Order Delivered Event --> N(Delivery EventHub)
+        L -- "Order delivered (ID: <order_id>)" --> M(Console/Logs)        
+        L -- Publish Order Delivered Event --> O(Delivery EventHub)
+    end
+
+    subgraph Event Hub Consumption
+        O(Delivery EventHub) --> P[Invoice Consumer]
+        P -- "Invoice Consumer: Processing delivered order (ID: <order_id>)" --> Q(Console/Logs)
+
+        O --> R[Vendor Resupply Consumer]
+        R -- "Vendor Resupply Consumer: Processing delivered order (ID: <order_id>)" --> Q
+
+        O --> S[Replenishment Consumer]
+        S -- "Replenishment Consumer: Processing delivered order (ID: <order_id>)" --> Q
     end

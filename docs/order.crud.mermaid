@@ -1,12 +1,9 @@
 graph TD
     subgraph Order Management
-        A[Web Portal] -- View/Edit Orders --> B(Order API)
-        B -- Query/Update Order Data --> C{MongoDB}
-        C -- Order Data --> B
-        B -- Display Orders --> A
+        A[Web Portal] -- Delete Orders --> B(Order API)
+        B -- Delete Order --> C{MongoDB}        
         A -- Add New Order (with random catalogs) --> D(Order API)
-        D -- Create Order Data --> C
-        C -- Store Order --> D
+        D -- Create Order --> C
     end
 
     subgraph Order Placement
